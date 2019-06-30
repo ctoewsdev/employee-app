@@ -17,6 +17,12 @@ public class Database {
 	private static String user;
 	private static String password;
 	private static String url;
+	// private static final String DB_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	// private static final String DB_URL = "jdbc:sqlserver://Beangrinder.bcit.ca";
+	// private static final String DB_USER = "javastudent";
+	// private static final String DB_PASSWORD = "compjava";
+	// private static final String DB_TABLE_NAME = "a00984935_Employees";
+	// private static final String DB_ID_FIELD = "ID";
 
 	public Database() {
 
@@ -27,11 +33,11 @@ public class Database {
 		Database.user = user;
 		Database.password = password;
 		Database.url = url;
-
 		try {
 			Class.forName(driver);
 			connection = DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException cnfe) {
+			System.out.println("Database error ********************************************************");
 			cnfe.printStackTrace();
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();

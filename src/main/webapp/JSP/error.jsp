@@ -4,10 +4,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Error!!!</title>
-    <link rel="stylesheet" href="admin.css" type="text/css" media="screen" title="no title">
+  
 </head>
 <body class="ERROR">
-    <div class="mdi">
+    <div class="error">
         <h1>${errorTitle}</h1>
         <div class="message">
             <p>${errorMsg}</p>

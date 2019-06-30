@@ -11,15 +11,13 @@ package com.caseytoews.webapp.employee.domain;
  * @author Casey Toews
  *
  */
-public class ResponseCode {
+public class ResponseCodes {
 
 	private String code;
-	private String description;
+	private String dscr;
 
-	public ResponseCode(String code, String description) {
+	public ResponseCodes() {
 		super();
-		this.code = code;
-		this.description = description;
 	}
 
 	public String getCode() {
@@ -30,17 +28,17 @@ public class ResponseCode {
 		this.code = code;
 	}
 
-	public String getDesc() {
-		return description;
+	public String getDscr() {
+		return dscr;
 	}
 
-	public void setDesc(String description) {
-		this.description = description;
+	public void setDscr(String description) {
+		this.dscr = description;
 	}
 
 	@Override
 	public String toString() {
-		return "ResponseCode [code=" + code + ", description=" + description + "]";
+		return "CommandResponse [code=" + code + ", description=" + dscr + "]";
 	}
 
 }

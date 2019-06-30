@@ -7,28 +7,24 @@
 
 	<servlet>
 		<servlet-name>EmployeeServlet</servlet-name>
-		<servlet-class>com.caseytoews.webapp.employee.controller.EmployeeServlet</servlet-class>
+		<servlet-class>com.caseytoews.webapp.employee.controller.servlet.EmployeeServlet</servlet-class>
 		<init-param>
-			<param-name>driver</param-name>
-			<param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
-		</init-param>
-		<init-param>
-			<param-name>url</param-name>
-			<param-value>jdbc:sqlserver://Beangrinder.bcit.ca</param-value>
-		</init-param>
-		<init-param>
-			<param-name>user</param-name>
-			<param-value>javastudent</param-value>
-		</init-param>
-		<init-param>
-			<param-name>password</param-name>
-			<param-value>compjava</param-value>
-		</init-param>
-		<init-param>
-			<param-name>tablename</param-name>
-			<param-value>a00984935_Employees</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
+            <param-name>driver</param-name>
+            <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:sqlserver://Beangrinder.bcit.ca</param-value>
+        </init-param>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>javastudent</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>compjava</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
 	</servlet>
 
 
@@ -37,10 +33,6 @@
 		<url-pattern>/employees</url-pattern>
 	</servlet-mapping>
 
-	<context-param>
-		<param-name>log4j-config-location</param-name>
-		<param-value>WEB-INF/log4j.properties</param-value>
-	</context-param>
 
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>

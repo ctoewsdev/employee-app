@@ -20,12 +20,10 @@ public interface EmployeeServices {
 
 	ArrayList<Employee> getEmployeesList() throws ClassNotFoundException, SQLException;
 
-	String getById(String id) throws ClassNotFoundException, SQLException;
+	Employee findEmployeeById(String ID) throws ClassNotFoundException, SQLException;
 
-	String addEmployee(String employee[]) throws ClassNotFoundException, SQLException;
+	boolean addEmployee(Employee employee) throws ClassNotFoundException, SQLException;
 
-	String deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException;
-
-	boolean isEmployeeExist(String id) throws ClassNotFoundException, SQLException;
+	boolean deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException;
 
 }

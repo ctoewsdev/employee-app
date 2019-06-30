@@ -1,16 +1,18 @@
 
 <html>
-    <jsp:include flush="true" page="/JSP/head.jsp" flush="true" />
+<head>
+    <jsp:include flush="true" page="/JSP/headblock.jsp" />
+    </head>
 <body>
 
     <div class="empTable">
-        <jsp:include flush="true" page="/JSP/employees.jsp" flush="true" />
+        <jsp:include flush="true" page="/JSP/employees.jsp" />
     </div>
     
     <div class="forms">
-        <jsp:include flush="true" page="/JSP/addEmployees.jsp" flush="true" />
-        <jsp:include flush="true" page="/JSP/findEmployees.jsp" flush="true" />
-        <jsp:include flush="true" page="/JSP/deleteEmployees.jsp" flush="true" />
+        <jsp:include flush="true" page="/JSP/addEmployee.jsp" />
+        <jsp:include flush="true" page="/JSP/findEmployee.jsp" />
+        <jsp:include flush="true" page="/JSP/deleteEmployee.jsp" />
     </div>
     
 </body>

@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
-
 import com.caseytoews.webapp.employee.domain.Employee;
 
 /**
@@ -24,13 +22,10 @@ import com.caseytoews.webapp.employee.domain.Employee;
  */
 public class EmployeeDAOImplementation implements EmployeeDAO {
 
-	private static Logger LOG = Logger.getLogger(EmployeeDAOImplementation.class);
-
 	private static Connection connection;
 	private static Statement statement;
 	private static PreparedStatement preparedStatement;
 	private static ResultSet resultSet;
-	private Employee employee;
 
 	public EmployeeDAOImplementation() {
 		super();
@@ -58,12 +53,12 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee getById(String id) throws ClassNotFoundException, SQLException {
+	public Employee findEmployeeById(String ID) throws ClassNotFoundException, SQLException {
 		connection = Database.getConnection();
 		preparedStatement = connection.prepareStatement(FIND_EMP_BY_ID);
-		preparedStatement.setString(1, id);
+		preparedStatement.setString(1, ID);
 		resultSet = preparedStatement.executeQuery();
-		employee = new Employee();
+		Employee employee = new Employee();
 		while (resultSet.next()) {
 			employee.setID(resultSet.getString(ID_FIELD));
 			employee.setFirstName(resultSet.getString(FNAME_FIELD));
@@ -71,8 +66,6 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			employee.setDOB(resultSet.getDate(DOB_FIELD));
 			return employee;
 		}
-
-		LOG.info(System.out.format("Not Found! Employee ID: %s", id));
 
 		return null;
 	}
@@ -97,8 +90,6 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			isAdded = true;
 		}
 
-		LOG.info(System.out.format("Employee \"%s\" %s", employee.toString(), isAdded ? "has been added." : " has NOT been Added!"));
-
 		return isAdded;
 	}
 
@@ -116,8 +107,6 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 		if (x == 1) {
 			isDeleted = true;
 		}
-
-		LOG.info(System.out.format("Employee \"%s\" %s", employee.toString(), isDeleted ? "has been deleted." : " has NOT been Deleted!"));
 
 		return isDeleted;
 	}
