@@ -27,9 +27,11 @@ public class FindEmployeeByID extends Command {
 		System.out.println("id to find :" + ID);
 
 		if (ID.isEmpty() || ID == null) {//
+			System.out.println("empty id");
 			cmdResp.setCode(INVALID_ID_CODE);
 			cmdResp.setDscr(NO_ID_DSCR);
 		} else if (!vtor.isIDValid(ID)) {
+			System.out.println("invalid id");
 			cmdResp.setCode(INVALID_ID_CODE);
 			cmdResp.setDscr(BAD_ID_DSCR);
 		} else {
@@ -37,10 +39,12 @@ public class FindEmployeeByID extends Command {
 			try {
 				Employee emp = service.findEmployeeById(ID);
 				if (emp != null) {
+					System.out.println("found id");
 					cmdResp.setCode(SUCCESS_CODE);
-					cmdResp.setDscr(SUCCESS_FIND_DSCR + emp.getFirstName() + " " + emp.getLastName());
+					cmdResp.setDscr(SUCCESS_FIND_DSCR);
 					request.setAttribute("foundEmp", emp);
 				} else {
+					System.out.println("not found id");
 					cmdResp.setCode(ERR_CODE);
 					cmdResp.setDscr(ERR_FIND_DSCR + ID);
 				}
@@ -50,6 +54,7 @@ public class FindEmployeeByID extends Command {
 
 			}
 		}
-		request.setAttribute("findReponse", cmdResp);
+		request.setAttribute("findResponse", cmdResp);
+		System.out.println(cmdResp.getCode() + " " + cmdResp.getDscr());
 	}
 }

@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class Validation {
 
-	private static final String idRegex = "^E0[0-9]{7}$";
+	private static final String idRegex = "^A0[0-9]{7}$";
 	private static final String nameRegex = "^[A-z]+$";
 	private static final String dateRegex = "^[0-9]{4}[/-][0-9]{2}[/-][0-9]{2}$";
 	private static final String dobRegex = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$";
@@ -29,6 +29,7 @@ public class Validation {
 	}
 
 	public boolean isIDValid(String id) {
+		System.out.println("in validation function");
 		Pattern pattern = Pattern.compile(idRegex);
 		Matcher matcher = pattern.matcher(id);
 		return matcher.matches();

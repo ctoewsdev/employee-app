@@ -45,12 +45,12 @@ public class EmployeeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String action = request.getParameter("action");
+		// String action = request.getParameter("action");
 
 		// CREATE DISPATCH OBJECT
 		String address = "/JSP/index.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-		System.out.println("in doget action");
+
 		// ADD EMPLOYEE
 		if ("add".equals(request.getParameter("action"))) {
 			System.out.println("in add action");
@@ -77,7 +77,9 @@ public class EmployeeServlet extends HttpServlet {
 		command.execute(request);
 
 		// DISPATCH RREQUEST TO INDEX.JSP
+		System.out.println("find response in servlet" + request.getParameter("findResponse"));
 		dispatcher.forward(request, response);
+
 	}
 
 	/**

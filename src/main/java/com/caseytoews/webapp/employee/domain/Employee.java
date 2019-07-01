@@ -72,7 +72,7 @@ public class Employee {
 	/**
 	 * @return the empDOB as a Employee
 	 */
-	public Date getDOB() {
+	public Date getDob() {
 		return dob;
 	}
 
@@ -80,7 +80,7 @@ public class Employee {
 	 * @param empDOB
 	 *            is the empDOB field to set
 	 */
-	public void setDOB(Date DOB) {
+	public void setDob(Date DOB) {
 		this.dob = DOB;
 	}
 

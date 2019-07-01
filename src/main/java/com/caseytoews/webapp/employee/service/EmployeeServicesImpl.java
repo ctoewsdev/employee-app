@@ -10,19 +10,18 @@ package com.caseytoews.webapp.employee.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.caseytoews.webapp.employee.database.EmployeeDAOImplementation;
+import com.caseytoews.webapp.employee.database.EmployeeDAOImpl;
 import com.caseytoews.webapp.employee.domain.Employee;
 
 /**
  * @author Casey Toews
  *
  */
-public class EmployeeServicesImplementation implements EmployeeServices {
-	private EmployeeDAOImplementation empDAO;
-	private String resultCode;
+public class EmployeeServicesImpl implements EmployeeServices {
+	private EmployeeDAOImpl empDAO;
 
-	public EmployeeServicesImplementation() {
-		empDAO = new EmployeeDAOImplementation();
+	public EmployeeServicesImpl() {
+		empDAO = new EmployeeDAOImpl();
 	}
 
 	@Override

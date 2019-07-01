@@ -66,7 +66,7 @@ public class AddEmployee extends Command {
 			}
 
 			try {
-				emp.setDOB(vtor.getDOBDateObject(request.getParameter("dob")));
+				emp.setDob(vtor.getDOBDateObject(request.getParameter("dob")));
 			} catch (ParseException e) {
 				cmdResp.setCode(ERR_CODE);
 				cmdResp.setDscr(ERR_DOB_DSCR + request.getParameter("dob"));

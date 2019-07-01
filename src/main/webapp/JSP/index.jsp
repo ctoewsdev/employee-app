@@ -1,4 +1,4 @@
-
+ <%@ page isELIgnored="false" %> 
 <html>
 <head>
     <jsp:include flush="true" page="/JSP/headblock.jsp" />

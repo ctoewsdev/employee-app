@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.caseytoews.webapp.employee.controller.responsecodes.ResponseCodes;
 import com.caseytoews.webapp.employee.controller.validation.Validation;
 import com.caseytoews.webapp.employee.service.EmployeeServices;
-import com.caseytoews.webapp.employee.service.EmployeeServicesImplementation;
+import com.caseytoews.webapp.employee.service.EmployeeServicesImpl;
 
 /**
  * @author Casey Toews
@@ -25,7 +25,8 @@ public abstract class Command implements ResponseCodes {
 
 	public Command() {
 
-		service = new EmployeeServicesImplementation();
+		service = new EmployeeServicesImpl();
+		vtor = new Validation();
 	}
 
 	public abstract void execute(HttpServletRequest request);

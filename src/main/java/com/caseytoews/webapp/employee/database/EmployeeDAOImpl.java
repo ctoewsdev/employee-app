@@ -20,14 +20,14 @@ import com.caseytoews.webapp.employee.domain.Employee;
  * @author Casey Toews
  *
  */
-public class EmployeeDAOImplementation implements EmployeeDAO {
+public class EmployeeDAOImpl implements EmployeeDAO {
 
 	private static Connection connection;
 	private static Statement statement;
 	private static PreparedStatement preparedStatement;
 	private static ResultSet resultSet;
 
-	public EmployeeDAOImplementation() {
+	public EmployeeDAOImpl() {
 		super();
 	}
 
@@ -43,9 +43,10 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			employee.setID(resultSet.getString(ID_FIELD));
 			employee.setFirstName(resultSet.getString(FNAME_FIELD));
 			employee.setLastName(resultSet.getString(LNAME_FIELD));
-			java.sql.Date dbSqlDate = resultSet.getDate(DOB_FIELD);
-			java.util.Date dbSqlDateConverted = new java.util.Date(dbSqlDate.getTime());
-			employee.setDOB(dbSqlDateConverted);
+			employee.setDob(resultSet.getDate(DOB_FIELD));
+			// java.sql.Date dbSqlDate = resultSet.getDate(DOB_FIELD);
+			// java.util.Date dbSqlDateConverted = new java.util.Date(dbSqlDate.getTime());
+			// employee.setDOB(dbSqlDateConverted);
 			employees.add(employee);
 		}
 
@@ -63,7 +64,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			employee.setID(resultSet.getString(ID_FIELD));
 			employee.setFirstName(resultSet.getString(FNAME_FIELD));
 			employee.setLastName(resultSet.getString(LNAME_FIELD));
-			employee.setDOB(resultSet.getDate(DOB_FIELD));
+			employee.setDob(resultSet.getDate(DOB_FIELD));
 			return employee;
 		}
 
@@ -74,7 +75,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 	public boolean addEmployee(Employee employee) throws ClassNotFoundException, SQLException {
 
 		// have to convert the java.util.Date to sql Date
-		java.sql.Date sqlDOB = new java.sql.Date(employee.getDOB().getTime());
+		java.sql.Date sqlDOB = new java.sql.Date(employee.getDob().getTime());
 		boolean isAdded = false;
 		connection = Database.getConnection();
 		preparedStatement = connection.prepareStatement(ADD_EMP);

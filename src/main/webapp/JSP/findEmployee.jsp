@@ -13,10 +13,14 @@
 					name="action" value="find"></td>
 			</tr>
 		</table>
-
-		${findResponse ne null? 'Response Code:  '+= findResponse.code : ""}
-		${findResponse ne null? 'Description:  '+= findResponse.dscr : ""}
-		${foundEmp.firstName} ${foundEmp.lastName}
 	</form>
+	<div class="response">
+		<!-- += operator requires EL 3.0 (Java EE 7 or higher -->
+		${findResponse ne null? 'Code: '+= findResponse.code : ""}
+		<br>
+		${findResponse ne null? 'Description: '+= findResponse.dscr : ""}
+		<br>
+        ${foundEmp ne null? 'Employee: '+= foundEmp.lastName +=', ' += foundEmp.firstName : ""}
+	</div>
 
 </div>

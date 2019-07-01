@@ -28,7 +28,7 @@ public class GetAllEmployees extends Command {
 		ArrayList<Employee> employeesList;
 		try {
 			employeesList = service.getEmployeesList();
-			request.setAttribute("empList", employeesList);
+			request.getSession().setAttribute("empList", employeesList);
 		} catch (ClassNotFoundException | SQLException e) {
 			cmdResp.setCode(ERR_CODE);
 			cmdResp.setDscr(ERR_ALL_DSCR);
