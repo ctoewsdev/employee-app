@@ -12,10 +12,6 @@ import java.util.ArrayList;
 
 import com.caseytoews.webapp.employee.domain.Employee;
 
-/**
- * @author Casey Toews
- *
- */
 public interface EmployeeServices {
 
 	ArrayList<Employee> getEmployeesList() throws ClassNotFoundException, SQLException;

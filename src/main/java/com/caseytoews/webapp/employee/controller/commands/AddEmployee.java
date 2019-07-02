@@ -55,7 +55,6 @@ public class AddEmployee extends Command {
 			try {
 				Employee existingEmp = service.findEmployeeById(emp.getID());
 				if (existingEmp != null) {
-					System.out.println("Emp id exists");
 					cmdResp.setCode(INVALID_ID_CODE);
 					cmdResp.setDscr(EXIST_ID_DSCR + "<br>ID: " + emp.getID());
 					request.setAttribute("addResponse", cmdResp);
@@ -65,7 +64,6 @@ public class AddEmployee extends Command {
 				cmdResp.setCode(ERR_CODE);
 				cmdResp.setDscr(ERR_SYSTEM_DSCR);
 				request.setAttribute("addResponse", cmdResp);
-				System.out.println("Err A: " + emp);
 				return;
 			}
 
@@ -94,12 +92,9 @@ public class AddEmployee extends Command {
 				cmdResp.setCode(ERR_CODE);
 				cmdResp.setDscr(ERR_SYSTEM_DSCR);
 				request.setAttribute("addResponse", cmdResp);
-				System.out.println("Err B: " + emp);
 			}
 		}
 
 		request.setAttribute("addResponse", cmdResp);
-
 	}
-
 }

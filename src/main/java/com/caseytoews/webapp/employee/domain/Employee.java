@@ -9,10 +9,6 @@ package com.caseytoews.webapp.employee.domain;
 
 import java.util.Date;
 
-/**
- * @author Casey Toews
- *
- */
 public class Employee {
 
 	private String ID;
