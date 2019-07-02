@@ -1,11 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <%@page import="com.caseytoews.webapp.employee.domain.Employee"%>
 
-<div class="box">
+<div class="section-box">
 	<h3 class="header">Employee List</h3>
-	<table>
+	<table class="left-table">
 		<tr>
 			<th>ID</th>
 			<th>First Name</th>

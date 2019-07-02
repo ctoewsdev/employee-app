@@ -24,7 +24,6 @@ public abstract class Command implements ResponseCodes {
 	protected Validation vtor;
 
 	public Command() {
-
 		service = new EmployeeServicesImpl();
 		vtor = new Validation();
 	}

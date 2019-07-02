@@ -18,7 +18,7 @@ import com.caseytoews.webapp.employee.domain.ResponseCodes;
 public class AddEmployee extends Command {
 
 	public AddEmployee() {
-
+		super();
 	}
 
 	@Override
@@ -44,34 +44,37 @@ public class AddEmployee extends Command {
 		} else if (!vtor.isNameValid(emp.getFirstName()) || !vtor.isNameValid(emp.getLastName())) {//
 			cmdResp.setCode(INVALID_NAME_CODE);
 			cmdResp.setDscr(BAD_NAME_DSCR);
-		} else if (request.getParameter("dob").isEmpty() || request.getParameter("dob") == null) {//
+		} else if (request.getParameter("addDOB").isEmpty() || request.getParameter("addDOB") == null) {//
 			cmdResp.setCode(INVALID_DOB_CODE);
 			cmdResp.setDscr(NO_DOB_DSCR);
-		} else if (!vtor.isDateValid(request.getParameter("dob"))) {
+		} else if (!vtor.isDateValid(request.getParameter("addDOB"))) {
 			cmdResp.setCode(INVALID_DOB_CODE);
 			cmdResp.setDscr(BAD_DOB_DSCR);
 		} else {
 
 			try {
-				if (service.getEmployeesList().contains(emp)) {
+				Employee existingEmp = service.findEmployeeById(emp.getID());
+				if (existingEmp != null) {
+					System.out.println("Emp id exists");
 					cmdResp.setCode(INVALID_ID_CODE);
-					cmdResp.setDscr(EXIST_ID_DSCR);
+					cmdResp.setDscr(EXIST_ID_DSCR + "<br>ID: " + emp.getID());
+					request.setAttribute("addResponse", cmdResp);
+					return;
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				cmdResp.setCode(ERR_CODE);
 				cmdResp.setDscr(ERR_SYSTEM_DSCR);
-
-				request.setAttribute("addReponse", cmdResp);
+				request.setAttribute("addResponse", cmdResp);
+				System.out.println("Err A: " + emp);
 				return;
 			}
 
 			try {
-				emp.setDob(vtor.getDOBDateObject(request.getParameter("dob")));
+				emp.setDob(vtor.getDOBDateObject(request.getParameter("addDOB")));
 			} catch (ParseException e) {
 				cmdResp.setCode(ERR_CODE);
-				cmdResp.setDscr(ERR_DOB_DSCR + request.getParameter("dob"));
-
-				request.setAttribute("addReponse", cmdResp);
+				cmdResp.setDscr(ERR_DOB_DSCR);
+				request.setAttribute("addResponse", cmdResp);
 				return;
 			}
 
@@ -79,18 +82,23 @@ public class AddEmployee extends Command {
 
 				if (service.addEmployee(emp)) {
 					cmdResp.setCode(SUCCESS_CODE);
-					cmdResp.setDscr(SUCCESS_ADD_DSCR + emp.getFirstName() + " " + emp.getLastName());
+					cmdResp.setDscr(SUCCESS_ADD_DSCR);
+					request.setAttribute("addEmp", emp);
 				} else {
 					cmdResp.setCode(ERR_CODE);
-					cmdResp.setDscr(ERR_ADD_DSCR + emp.getFirstName() + " " + emp.getLastName());
+					cmdResp.setDscr(ERR_ADD_DSCR);
+					request.setAttribute("addEmp", emp);
 				}
 
 			} catch (ClassNotFoundException | SQLException e) {
-
+				cmdResp.setCode(ERR_CODE);
+				cmdResp.setDscr(ERR_SYSTEM_DSCR);
+				request.setAttribute("addResponse", cmdResp);
+				System.out.println("Err B: " + emp);
 			}
 		}
 
-		request.setAttribute("addReponse", cmdResp);
+		request.setAttribute("addResponse", cmdResp);
 
 	}
 

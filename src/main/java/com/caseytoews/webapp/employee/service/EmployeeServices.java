@@ -24,6 +24,6 @@ public interface EmployeeServices {
 
 	boolean addEmployee(Employee employee) throws ClassNotFoundException, SQLException;
 
-	boolean deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException;
+	boolean deleteEmployee(String ID) throws ClassNotFoundException, SQLException;
 
 }

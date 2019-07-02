@@ -17,13 +17,12 @@ import com.caseytoews.webapp.employee.domain.ResponseCodes;
 public class DeleteEmployee extends Command {
 
 	public DeleteEmployee() {
-
+		super();
 	}
 
 	@Override
 	public void execute(HttpServletRequest request) {
 		ResponseCodes cmdResp = new ResponseCodes();
-		Employee emp = new Employee();
 		String ID = request.getParameter("idToDelete");
 
 		if (ID.isEmpty() || ID == null) {//
@@ -35,21 +34,21 @@ public class DeleteEmployee extends Command {
 		} else {
 
 			try {
-				emp.setID(request.getParameter("idToDelete"));
-				if (service.deleteEmployee(emp)) {
+				Employee deleteEmp = new Employee();
+				deleteEmp = service.findEmployeeById(ID);
+				if (service.deleteEmployee(ID)) {
 					cmdResp.setCode(SUCCESS_CODE);
-					cmdResp.setDscr(SUCCESS_DELETE_DSCR + emp.getFirstName() + " " + emp.getLastName());
-					request.setAttribute("foundEmp", emp);
+					cmdResp.setDscr(SUCCESS_DELETE_DSCR);
+					request.setAttribute("deleteEmp", deleteEmp);
 				} else {
 					cmdResp.setCode(ERR_CODE);
-					cmdResp.setDscr(ERR_DELETE_DSCR + ID);
+					cmdResp.setDscr(ERR_DELETE_DSCR + "<br>ID: " + ID);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				cmdResp.setCode(ERR_CODE);
 				cmdResp.setDscr(ERR_SYSTEM_DSCR);
-
 			}
 		}
-		request.setAttribute("findReponse", cmdResp);
+		request.setAttribute("deleteResponse", cmdResp);
 	}
 }

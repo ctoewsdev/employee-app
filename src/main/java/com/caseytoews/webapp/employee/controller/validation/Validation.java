@@ -13,10 +13,6 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author Casey Toews
- *         Class validation is inherited by Command class
- */
 public class Validation {
 
 	private static final String idRegex = "^A0[0-9]{7}$";

@@ -18,14 +18,15 @@ import com.caseytoews.webapp.employee.domain.ResponseCodes;
 public class GetAllEmployees extends Command {
 
 	public GetAllEmployees() {
-
+		super();
 	}
 
 	@Override
 	public void execute(HttpServletRequest request) {
-		ResponseCodes cmdResp = new ResponseCodes();
 
+		ResponseCodes cmdResp = new ResponseCodes();
 		ArrayList<Employee> employeesList;
+
 		try {
 			employeesList = service.getEmployeesList();
 			request.getSession().setAttribute("empList", employeesList);

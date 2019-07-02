@@ -1,7 +1,7 @@
-<div class="box">
+<div class="section-box">
 	<h3 class="header">Remove an Employee</h3>
 	<form method="POST">
-		<table>
+		<table class="right-table">
 			<tr>
 				<td>ID:</td>
 				<td><input type="text" name="idToDelete" /></td>
@@ -12,8 +12,11 @@
 					name="action" value="delete"></td>
 			</tr>
 		</table>
-
-		${deleteResponse ne null? 'Response Code:  '+= deleteResponse.code : ""}
-		${deleteResponse ne null? 'Description:  '+= deleteResponse.dscr : ""}
+    <div class="responses">
+        <!-- += operator requires EL 3.0 (Java EE 7 or higher -->
+        ${deleteResponse ne null? 'Code: '+= deleteResponse.code += '<br>': ""}
+        ${deleteResponse ne null? 'Description: '+= deleteResponse.dscr : ""}
+        ${deleteEmp ne null? '<br>Employee: '+= deleteEmp.lastName +=', ' += deleteEmp.firstName : ""}
+    </div>
 	</form>
 </div>

@@ -16,10 +16,6 @@ import java.util.ArrayList;
 
 import com.caseytoews.webapp.employee.domain.Employee;
 
-/**
- * @author Casey Toews
- *
- */
 public class EmployeeDAOImpl implements EmployeeDAO {
 
 	private static Connection connection;
@@ -44,11 +40,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			employee.setFirstName(resultSet.getString(FNAME_FIELD));
 			employee.setLastName(resultSet.getString(LNAME_FIELD));
 			employee.setDob(resultSet.getDate(DOB_FIELD));
-			// java.sql.Date dbSqlDate = resultSet.getDate(DOB_FIELD);
-			// java.util.Date dbSqlDateConverted = new java.util.Date(dbSqlDate.getTime());
-			// employee.setDOB(dbSqlDateConverted);
 			employees.add(employee);
 		}
+
+		close();
 
 		return employees;
 	}
@@ -68,13 +63,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			return employee;
 		}
 
+		close();
+
 		return null;
 	}
 
 	@Override
 	public boolean addEmployee(Employee employee) throws ClassNotFoundException, SQLException {
 
-		// have to convert the java.util.Date to sql Date
 		java.sql.Date sqlDOB = new java.sql.Date(employee.getDob().getTime());
 		boolean isAdded = false;
 		connection = Database.getConnection();
@@ -85,23 +81,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		preparedStatement.setString(3, employee.getLastName());
 		preparedStatement.setDate(4, sqlDOB);
 
+		System.out.println(preparedStatement);
+
 		int x = preparedStatement.executeUpdate();
 
 		if (x == 1) {
 			isAdded = true;
 		}
 
+		close();
+
 		return isAdded;
 	}
 
 	@Override
-	public boolean deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException {
+	public boolean deleteEmployee(String ID) throws ClassNotFoundException, SQLException {
 
 		boolean isDeleted = false;
 
 		connection = Database.getConnection();
 		preparedStatement = connection.prepareStatement(DELETE_EMP);
-		preparedStatement.setString(1, employee.getID());
+		preparedStatement.setString(1, ID);
 
 		int x = preparedStatement.executeUpdate();
 
@@ -109,24 +109,20 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			isDeleted = true;
 		}
 
+		close();
+
 		return isDeleted;
 	}
 
-	/**
-	 * method shutdown() closes the DB connection
-	 * 
-	 * 
-	 */
-	public void shutdown() {
+	@Override
+	public void close() {
 		if (connection != null) {
 			try {
-
 				connection.close();
 				connection = null;
 			} catch (SQLException e) {
-
+				e.printStackTrace();
 			}
 		}
 	}
-
 }

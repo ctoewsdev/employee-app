@@ -1,3 +1,9 @@
+/**
+ * Project: employee-application
+ * File: EmployeeServlet.java
+ * Date: Jun 28, 2019
+ * Time: 10:57:37 AM
+ */
 package com.caseytoews.webapp.employee.controller.servlet;
 
 import java.io.IOException;
@@ -15,18 +21,11 @@ import com.caseytoews.webapp.employee.controller.commands.FindEmployeeByID;
 import com.caseytoews.webapp.employee.controller.commands.GetAllEmployees;
 import com.caseytoews.webapp.employee.database.Database;
 
-/**
- * Servlet implementation class EmployeeServlet
- */
 public class EmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public EmployeeServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -35,17 +34,8 @@ public class EmployeeServlet extends HttpServlet {
 				config.getInitParameter("password"));
 	}
 
-	// public void init(ServletConfig config) throws ServletException {
-	// new Database().init();
-	// }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		// String action = request.getParameter("action");
 
 		// CREATE DISPATCH OBJECT
 		String address = "/JSP/index.jsp";
@@ -53,14 +43,12 @@ public class EmployeeServlet extends HttpServlet {
 
 		// ADD EMPLOYEE
 		if ("add".equals(request.getParameter("action"))) {
-			System.out.println("in add action");
 			AddEmployee command = new AddEmployee();
 			command.execute(request);
 		}
 
 		// FIND EMPLOYEE BY ID
 		else if ("find".equals(request.getParameter("action"))) {
-			System.out.println("in find action");
 			FindEmployeeByID command = new FindEmployeeByID();
 			command.execute(request);
 		}
@@ -69,7 +57,6 @@ public class EmployeeServlet extends HttpServlet {
 		else if ("delete".equals(request.getParameter("action"))) {
 			DeleteEmployee command = new DeleteEmployee();
 			command.execute(request);
-
 		}
 
 		// GET EMPLOYEES LIST
@@ -77,17 +64,11 @@ public class EmployeeServlet extends HttpServlet {
 		command.execute(request);
 
 		// DISPATCH RREQUEST TO INDEX.JSP
-		System.out.println("find response in servlet" + request.getParameter("findResponse"));
 		dispatcher.forward(request, response);
-
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

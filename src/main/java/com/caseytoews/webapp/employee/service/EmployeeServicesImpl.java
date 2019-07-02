@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import com.caseytoews.webapp.employee.database.EmployeeDAOImpl;
 import com.caseytoews.webapp.employee.domain.Employee;
 
-/**
- * @author Casey Toews
- *
- */
 public class EmployeeServicesImpl implements EmployeeServices {
 	private EmployeeDAOImpl empDAO;
 
@@ -26,27 +22,22 @@ public class EmployeeServicesImpl implements EmployeeServices {
 
 	@Override
 	public ArrayList<Employee> getEmployeesList() throws ClassNotFoundException, SQLException {
-
 		return empDAO.getAllEmployees();
 	}
 
 	@Override
 	public Employee findEmployeeById(String ID) throws ClassNotFoundException, SQLException {
-
 		return empDAO.findEmployeeById(ID);
-
 	}
 
 	@Override
 	public boolean addEmployee(Employee employee) throws ClassNotFoundException, SQLException {
-
 		return empDAO.addEmployee(employee);
 	}
 
 	@Override
-	public boolean deleteEmployee(Employee emp) throws ClassNotFoundException, SQLException {
-
-		return empDAO.deleteEmployee(emp);
+	public boolean deleteEmployee(String ID) throws ClassNotFoundException, SQLException {
+		return empDAO.deleteEmployee(ID);
 	}
 
 }

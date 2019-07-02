@@ -12,13 +12,9 @@ import java.util.ArrayList;
 
 import com.caseytoews.webapp.employee.domain.Employee;
 
-/**
- * @author Casey Toews
- *
- */
 public interface EmployeeDAO {
 
-	final static String TABLE = "a00984935_Employees";
+	final static String TABLE = "Employees";
 	final static String ID_FIELD = "ID";
 	final static String FNAME_FIELD = "firstName";
 	final static String LNAME_FIELD = "lastName";
@@ -33,12 +29,13 @@ public interface EmployeeDAO {
 
 	final static String FIND_EMP_BY_ID = String.format("SELECT * FROM %s WHERE %s=?", TABLE, ID_FIELD);
 
-	ArrayList<Employee> getAllEmployees() throws ClassNotFoundException, SQLException;;
+	ArrayList<Employee> getAllEmployees() throws ClassNotFoundException, SQLException;
 
-	Employee findEmployeeById(String ID) throws ClassNotFoundException, SQLException;;
+	Employee findEmployeeById(String ID) throws ClassNotFoundException, SQLException;
 
-	boolean addEmployee(Employee employee) throws ClassNotFoundException, SQLException;;
+	boolean addEmployee(Employee employee) throws ClassNotFoundException, SQLException;
 
-	boolean deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException;;
+	boolean deleteEmployee(String ID) throws ClassNotFoundException, SQLException;
 
+	void close();
 }

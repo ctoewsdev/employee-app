@@ -24,14 +24,12 @@ public class FindEmployeeByID extends Command {
 	public void execute(HttpServletRequest request) {
 		ResponseCodes cmdResp = new ResponseCodes();
 		String ID = (request.getParameter("idToFind"));
-		System.out.println("id to find :" + ID);
 
 		if (ID.isEmpty() || ID == null) {//
 			System.out.println("empty id");
 			cmdResp.setCode(INVALID_ID_CODE);
 			cmdResp.setDscr(NO_ID_DSCR);
 		} else if (!vtor.isIDValid(ID)) {
-			System.out.println("invalid id");
 			cmdResp.setCode(INVALID_ID_CODE);
 			cmdResp.setDscr(BAD_ID_DSCR);
 		} else {
@@ -39,22 +37,18 @@ public class FindEmployeeByID extends Command {
 			try {
 				Employee emp = service.findEmployeeById(ID);
 				if (emp != null) {
-					System.out.println("found id");
 					cmdResp.setCode(SUCCESS_CODE);
 					cmdResp.setDscr(SUCCESS_FIND_DSCR);
 					request.setAttribute("foundEmp", emp);
 				} else {
-					System.out.println("not found id");
 					cmdResp.setCode(ERR_CODE);
-					cmdResp.setDscr(ERR_FIND_DSCR + ID);
+					cmdResp.setDscr(ERR_FIND_DSCR + "<br>ID: " + ID);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				cmdResp.setCode(ERR_CODE);
 				cmdResp.setDscr(ERR_SYSTEM_DSCR);
-
 			}
 		}
 		request.setAttribute("findResponse", cmdResp);
-		System.out.println(cmdResp.getCode() + " " + cmdResp.getDscr());
 	}
 }

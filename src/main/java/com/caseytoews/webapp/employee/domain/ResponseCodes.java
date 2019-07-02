@@ -7,10 +7,6 @@
 
 package com.caseytoews.webapp.employee.domain;
 
-/**
- * @author Casey Toews
- *
- */
 public class ResponseCodes {
 
 	private String code;
