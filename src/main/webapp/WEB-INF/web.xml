@@ -12,15 +12,15 @@
 		</init-param>
 		<init-param>
 			<param-name>url</param-name>
-			<param-value>jdbc:sqlserver://Beangrinder.bcit.ca</param-value>
+			<param-value>yourjdbcserver</param-value>
 		</init-param>
 		<init-param>
 			<param-name>user</param-name>
-			<param-value>javastudent</param-value>
+			<param-value>yourusername</param-value>
 		</init-param>
 		<init-param>
 			<param-name>password</param-name>
-			<param-value>compjava</param-value>
+			<param-value>yourpassword</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
